@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Card, Container, Row, Col, Spinner } from 'react-bootstrap';
-import "./App.css"
+import "./App.css";
 import axios from 'axios';
 
 const App = () => {
   const [giphy, setGiphy] = useState("");
   const [fetching, setFetching] = useState("false");
-  const [name, setName] = useState('')
+  const [name, setName] = useState('');
   const [status, setStatus] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       const apiRoot = "https://api.giphy.com/v1/gifs/";
       const api_key = process.env.REACT_APP_GIPHY_KEY;
-      const result = await axios(`${apiRoot}trending?api_key=${api_key}`)
+      const result = await axios(`${apiRoot}trending?api_key=${api_key}`);
       const randomIndex = Math.floor(Math.random() * 50);
 
       setGiphy(`${result.data.data[randomIndex].images.fixed_height.url}`);
@@ -43,7 +43,7 @@ const App = () => {
                   <Card.Body>
                     <Card.Title>{name}</Card.Title>
                     <Card.Text>Рандомные гифки по клику :)</Card.Text>
-                    <Button 
+                    <Button
                       variant="primary" 
                       onClick={() => setFetching(!fetching)}
                     >
